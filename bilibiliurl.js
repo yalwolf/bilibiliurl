@@ -1,16 +1,16 @@
 // ==UserScript==
 // @name              哔哩哔哩链接识别助手
-// @namespace         https://github.com/syhyz1990/panAI
+// @namespace         https://github.com/yalwolf/bilibiliurl
 // @version           1.2
 // @author            一只阿狼哒
-// @icon              
-// @icon64            
-// @description       AI智能识别选中文字中的哔哩哔哩链接【AV】【BV】等。
+// @icon              https://js.alwolf.cn/images/bilibiliurl.png
+// @icon64            https://js.alwolf.cn/images/bilibiliurl.png
+// @description       AI智能识别选中文字中的哔哩哔哩链接【视频】【动态】等。
 // @license           AGPL
 // @homepage          https://www.youxiaohou.com/tool/install-panai.html
 // @supportURL        https://github.com/syhyz1990/panAI
-// @updateURL
-// @downloadURL
+// @updateURL         https://js.alwolf.cn/js/bilibiliurl.js
+// @downloadURL       https://js.alwolf.cn/js/bilibiliurl.js
 // @match             *://*/*
 // @require           https://unpkg.com/sweetalert2@10.16.6/dist/sweetalert2.min.js
 // @resource          swalStyle https://unpkg.com/sweetalert2@10.16.6/dist/sweetalert2.min.css
