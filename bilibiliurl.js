@@ -1,14 +1,14 @@
 // ==UserScript==
 // @name              哔哩哔哩链接识别助手
 // @namespace         https://github.com/yalwolf/bilibiliurl
-// @version           1.2
+// @version           1.2.6
 // @author            一只阿狼哒
 // @icon              https://js.alwolf.cn/images/bilibiliurl.png
 // @icon64            https://js.alwolf.cn/images/bilibiliurl.png
 // @description       AI智能识别选中文字中的哔哩哔哩链接【视频】【动态】等。
 // @license           AGPL
-// @homepage          https://www.youxiaohou.com/tool/install-panai.html
-// @supportURL        https://github.com/syhyz1990/panAI
+// @homepage          https://js.alwolf.cn/
+// @supportURL        https://github.com/yalwolf/bilibiliurl
 // @updateURL         https://js.alwolf.cn/js/bilibiliurl.js
 // @downloadURL       https://js.alwolf.cn/js/bilibiliurl.js
 // @match             *://*/*
@@ -144,6 +144,22 @@
             input: ['#accessCode'],
             button: ['#submitBtn'],
             name: 'bilibili动态',
+            storage: 'hash'
+        },
+        bilibiligame: {
+            reg: /((?:https?:\/\/)?game\.bilibili\.com\/[A-Za-z_\-]+)/,
+            host: /game\.bilibili\.com/,
+            input: ['#accessCode'],
+            button: ['#submitBtn'],
+            name: 'bilibili游戏',
+            storage: 'hash'
+        },
+        biligame: {
+            reg: /((?:https?:\/\/)?www\.biligame\.com\/(?:detail\/\?id=)?[0-9]+)/,
+            host: /www\.biligame\.com/,
+            input: ['#accessCode'],
+            button: ['#submitBtn'],
+            name: 'bilibili游戏',
             storage: 'hash'
         },
     };
@@ -379,8 +395,8 @@
             GM_registerMenuCommand('介绍', () => {
                 let html = `<div style="font-size: 1em;">
                               <label class="panai-setting-label"><a href="https://js.alwolf.cn"title="脚本丨主页" target="_blank" class="links" style="text-decoration:none;">主页</a></label>
-                              <label class="panai-setting-label"><a href="https://js.alwolf.cn/js/updates"title="脚本丨检查更新" target="_blank" class="links" style="text-decoration:none;">检查更新</label>
-                              <label class="panai-setting-label"><a href="https://js.alwolf.cn/tutorial"title="脚本丨教程" target="_blank" class="links" style="text-decoration:none;">使用教程</label>
+                              <label class="panai-setting-label"><a href="https://js.alwolf.cn/js/updates/bilibiliurl"title="脚本丨检查更新" target="_blank" class="links" style="text-decoration:none;">检查更新</label>
+                              <label class="panai-setting-label"><a href="https://js.alwolf.cn/tutorial/bilibiliurl"title="脚本丨教程" target="_blank" class="links" style="text-decoration:none;">使用教程</label>
                             </div>`;
                 Swal.fire({
                     title: '识别助手介绍',
