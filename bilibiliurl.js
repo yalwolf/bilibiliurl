@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name              哔哩哔哩链接识别助手
 // @namespace         https://github.com/yalwolf/bilibiliurl
-// @version           1.2.6
+// @version           1.2.7
 // @author            一只阿狼哒
 // @icon              https://js.alwolf.cn/images/bilibiliurl.png
 // @icon64            https://js.alwolf.cn/images/bilibiliurl.png
@@ -9,8 +9,6 @@
 // @license           AGPL
 // @homepage          https://js.alwolf.cn/
 // @supportURL        https://github.com/yalwolf/bilibiliurl
-// @updateURL         https://js.alwolf.cn/js/bilibiliurl.js
-// @downloadURL       https://js.alwolf.cn/js/bilibiliurl.js
 // @match             *://*/*
 // @require           https://unpkg.com/sweetalert2@10.16.6/dist/sweetalert2.min.js
 // @resource          swalStyle https://unpkg.com/sweetalert2@10.16.6/dist/sweetalert2.min.css
@@ -141,6 +139,14 @@
         bilibilidt: {
             reg: /((?:https?:\/\/)?t\.bilibili\.com\/[0-9]+)/,
             host: /t\.bilibili\.com/,
+            input: ['#accessCode'],
+            button: ['#submitBtn'],
+            name: 'bilibili动态',
+            storage: 'hash'
+        },
+        b23tv: {
+            reg: /((?:https?:\/\/)?\/b23\.tv\/[A-Za-z]+)/,
+            host: /b23\.tv/,
             input: ['#accessCode'],
             button: ['#submitBtn'],
             name: 'bilibili动态',
