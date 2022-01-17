@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name              哔哩哔哩链接识别助手
 // @namespace         https://github.com/yalwolf/bilibiliurl
-// @version           1.2.7
+// @version           1.3
 // @author            一只阿狼哒
 // @icon              https://js.alwolf.cn/images/bilibiliurl.png
 // @icon64            https://js.alwolf.cn/images/bilibiliurl.png
@@ -112,6 +112,38 @@
             name: 'bilibili视频',
             storage: 'hash'
         },
+        bilibilifj: {
+            reg: /((?:https?:\/\/)?www\.bilibili\.com\/bangumi\/play\/[A-Za-z0-9]+)/,
+            host: /www\.bilibili\.com/,
+            input: ['#accessCode'],
+            button: ['#submitBtn'],
+            name: 'bilibili番剧/纪录片/动画',
+            storage: 'hash'
+        },
+        bilibilimh: {
+            reg: /((?:https?:\/\/)?manga\.bilibili\.com\/detail\/[A-Za-z0-9]+)/,
+            host: /manga\.bilibili\.com/,
+            input: ['#accessCode'],
+            button: ['#submitBtn'],
+            name: 'bilibili漫画',
+            storage: 'hash'
+        },
+        bilibililive: {
+            reg: /((?:https?:\/\/)?live\.bilibili\.com\/[0-9]+)/,
+            host: /live\.bilibili\.com/,
+            input: ['#accessCode'],
+            button: ['#submitBtn'],
+            name: 'bilibili直播间',
+            storage: 'hash'
+        },
+        bilibilikt: {
+            reg: /((?:https?:\/\/)?www\.bilibili\.com\/cheese\/play\/[A-Za-z0-9]+)/,
+            host: /www\.bilibili\.com/,
+            input: ['#accessCode'],
+            button: ['#submitBtn'],
+            name: 'bilibili课堂',
+            storage: 'hash'
+        },
         bilibiliau: {
             reg: /((?:https?:\/\/)?www\.bilibili\.com\/audio\/[A-Za-z0-9]+)/,
             host: /www\.bilibili\.com/,
@@ -166,6 +198,30 @@
             input: ['#accessCode'],
             button: ['#submitBtn'],
             name: 'bilibili游戏',
+            storage: 'hash'
+        },
+        bilishow: {
+            reg: /((?:https?:\/\/)?show\.bilibili\.com\/(?:platform\/detail.html\?id=)?[0-9]+)/,
+            host: /show\.biligame\.com/,
+            input: ['#accessCode'],
+            button: ['#submitBtn'],
+            name: 'bilibili会员购',
+            storage: 'hash'
+        },
+        bilibilijc: {
+            reg: /((?:https?:\/\/)?www\.bilibili\.com\/blackboard\/activity-[A-Za-z0-9]+).html/,
+            host: /www\.bilibili\.com/,
+            input: ['#accessCode'],
+            button: ['#submitBtn'],
+            name: 'bilibili活动',
+            storage: 'hash'
+        },
+        bilibiligy: {
+            reg: /((?:https?:\/\/)?love\.bilibili\.com\/(?:detail\?uuid=)?[A-Za-z0-9_\-]+)/,
+            host: /love\.bilibili\.com/,
+            input: ['#accessCode'],
+            button: ['#submitBtn'],
+            name: 'bilibili公益',
             storage: 'hash'
         },
     };
@@ -232,7 +288,7 @@
                         showCancelButton: true,
                         position: 'top',
                         title: `发现<span style="color: #2778c4;margin: 0 5px;">${name}</span>链接`,
-                        html: `<span style="font-size: 0.8em;">${!!pwd ? '密码：' + pwd : '是否打开？'}</span>`,
+                        html: `<span style="font-size: 0.8em;">是否打开？</span>`,
                         confirmButtonText: '打开',
                         cancelButtonText: '关闭',
                         customClass
@@ -269,8 +325,6 @@
         parseLink(text = '') {
             let obj = {name: '', link: ''};
             if (text) {
-                text = text.replace(/[\u4e00-\u9fa5\u200B()（）,，]/g, '');
-                text = text.replace(/lanzous/g, 'lanzouw'); //修正lanzous打不开的问题
                 for (let name in opt) {
                     let val = opt[name];
                     if (val.reg.test(text)) {
@@ -295,8 +349,8 @@
 
         //正则解析提取码
         parsePwd(text) {
-            text = text.replace(/\u200B/g, '');
-            let reg = /(?<=\s*(密|提取|访问|訪問|key|password|pwd|#)[码碼]?[：:=]?\s*)[A-Za-z0-9]{3,8}/i;
+            text = text.replace(/#/, '');
+            let reg = /#/;
             if (reg.test(text)) {
                 let match = text.match(reg);
                 return match[0];
