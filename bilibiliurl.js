@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name              哔哩哔哩链接识别助手
 // @namespace         https://github.com/yalwolf/bilibiliurl
-// @version           1.3
+// @version           1.3.4
 // @author            一只阿狼哒
 // @icon              https://js.alwolf.cn/images/bilibiliurl.png
 // @icon64            https://js.alwolf.cn/images/bilibiliurl.png
@@ -112,6 +112,14 @@
             name: 'bilibili视频',
             storage: 'hash'
         },
+        bilibilitbsp: {
+            reg: /((?:https?:\/\/)?www\.bilibili\.com\/festival\/[A-Za-z0-9]+)/,
+            host: /www\.bilibili\.com/,
+            input: ['#accessCode'],
+            button: ['#submitBtn'],
+            name: 'bilibili专属页',
+            storage: 'hash'
+        },
         bilibilifj: {
             reg: /((?:https?:\/\/)?www\.bilibili\.com\/bangumi\/play\/[A-Za-z0-9]+)/,
             host: /www\.bilibili\.com/,
@@ -177,11 +185,11 @@
             storage: 'hash'
         },
         b23tv: {
-            reg: /((?:https?:\/\/)?\/b23\.tv\/[A-Za-z]+)/,
+            reg: /((?:https?:\/\/)?\/b23\.tv\/[A-Za-z0-9]+)/,
             host: /b23\.tv/,
             input: ['#accessCode'],
             button: ['#submitBtn'],
-            name: 'bilibili动态',
+            name: 'bilibili短链接',
             storage: 'hash'
         },
         bilibiligame: {
@@ -282,13 +290,16 @@
                     }
                     let end = performance.now();
                     let time = (end - start).toFixed(3);
-                    util.clog(`文本识别结果：${name} 链接：${link} 密码：${pwd} 耗时：${time}毫秒`);
+                    util.clog(`文本识别结果：${name} 链接：${link} 耗时：${time}毫秒`);
                     let option = {
                         toast: true,
                         showCancelButton: true,
                         position: 'top',
-                        title: `发现<span style="color: #2778c4;margin: 0 5px;">${name}</span>链接`,
-                        html: `<span style="font-size: 0.8em;">是否打开？</span>`,
+                        title: `发现<span style="color: #2778c4;margin: 0 5px;">哔哩哔哩</span>链接`,
+                        html: `<div>链接：<span style="color:blue;font-size: 0.8em;">${link}</span></div>
+                        <div>标题：<span style="color:#000;font-size: 0.8em;">!开发中</span></div>
+                        <div>类型：<span style="color:blue;font-size: 0.8em;">${name}</span></div>
+                        <span style="font-size: 0.8em;">是否打开</span><span style="color:#000;font-size: 0.8em;">’？</span>`,
                         confirmButtonText: '打开',
                         cancelButtonText: '关闭',
                         customClass
